@@ -5,7 +5,9 @@ from flask import Flask, render_template, request
 
 
 def yanglish(putstring):
-    import translators as ts
+    from pygtrans import Translate
+    # import translators as ts
+    client = Translate()
     import jieba
     import random
     outputString = ""
@@ -16,7 +18,8 @@ def yanglish(putstring):
         rand = bool(random.getrandbits(1))
         print("rand:", rand)
         if rand:
-            outputString = outputString+" "+str(ts.google(w))+" "
+            text = client.translate(w,target='en')
+            outputString = outputString+" "+str(text.translatedText)+" "
             # print(outputString)
         else:
             outputString = outputString+(w)
