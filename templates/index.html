@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yanglish 放洋屁生成器</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <style>
+        * {
+            background-color: #ffffff;
+            /* margin: 0 auto; */
+            text-align: center;
+        }
+
+        #div1 {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            /* margin: 0 auto; */
+        }
+    </style>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#btn").click(function() {
+                var postString = $("#postString").val();
+                $.ajax({
+             url:"../out?putstring"+putstring,
+             type: "get",
+             success: function (returnValue) {
+                 $("#out").val(returnValue);
+             },
+             error: function (returnValue) {
+                 alert("对不起！数据加载失败！");
+             }
+         })
+            });
+        });
+    </script> -->
+
+    <script>
+
+        function alertit() {
+            msg = document.getElementById("postString").value;
+            out = document.getElementById("out");
+            out.value=null;
+            JSON.stringify(msg);
+            // alert(msg);
+            $.ajax({
+                url: "./out?putstring=" + msg,
+                type: "get",
+                success: function (returnValue) {
+
+                    $("#out").val(JSON.parse(returnValue)['obj']);
+                },
+                error: function (returnValue) {
+                    alert("对不起！数据加载失败！");
+                }
+            })
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="div1">
+        <h1>Yanglish 放洋屁生成器</h1>
+        <p><input type="text" id="postString"></p>
+        <!-- <p><button id="btn" onclick="post">提交</button></p> -->
+
+        <p>
+            <button id="btn" onclick=alertit()>
+                post
+            </button>
+        </p>
+        <p><textarea name="out" id="out" cols="30" rows="10"></textarea></p>
+    </div>
+</body>
+
+</html>
