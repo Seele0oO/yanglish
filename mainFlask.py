@@ -18,7 +18,7 @@ def yanglish(putstring):
         rand = bool(random.getrandbits(1))
         print("rand:", rand)
         if rand:
-            text = client.translate(w,target='en')[0]
+            text = client.translate(w,target='en',source='zh',fmt='text')
             outputString = outputString+" "+str(text.translatedText)+" "
             # print(outputString)
         else:
