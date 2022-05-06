@@ -32,35 +32,29 @@
             /* margin: 0 auto; */
         }
     </style>
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#btn").click(function() {
-                var postString = $("#postString").val();
-                $.ajax({
-             url:"../out?putstring"+putstring,
-             type: "get",
-             success: function (returnValue) {
-                 $("#out").val(returnValue);
-             },
-             error: function (returnValue) {
-                 alert("对不起！数据加载失败！");
-             }
-         })
-            });
-        });
-    </script> -->
+
 
     <script>
+
+        function getCheckBoxs() {
+            var obj = document.getElementsByName("lg");
+            var check_val = [];
+            for (k in obj) {
+                if (obj[k].checked)
+                    check_val.push(obj[k].value);
+            }
+            return check_val;
+        }
 
         function alertit() {
+            check_val=getCheckBoxs();
             msg = document.getElementById("postString").value;
             out = document.getElementById("out");
             out.value = null;
             JSON.stringify(msg);
             // alert(msg);
             $.ajax({
-                url: "./out?putstring=" + msg,
+                url: "./out?putstring=" + msg+"&languageList="+check_val,
                 type: "get",
                 success: function (returnValue) {
 
@@ -81,9 +75,18 @@
         <p><input type="text" id="postString"></p>
         <!-- <p><button id="btn" onclick="post">提交</button></p> -->
 
+
+        <input type="checkbox" name="lg" id="zh" value="zh">中文
+        <input type="checkbox" name="lg" id="en" value="en">英文
+        <input type="checkbox" name="lg" id="jp" value="jp">日语
+        <input type="checkbox" name="lg" id="ru" value="ru">俄语
+        <input type="checkbox" name="lg" id="fr" value="fr">法语
+        <input type="checkbox" name="lg" id="de" value="de">德语
+        <input type="checkbox" name="lg" id="es" value="es">西班牙语
+
         <p>
             <button id="btn" onclick=alertit()>
-                post
+                提交
             </button>
         </p>
         <p><textarea name="out" id="out" cols="30" rows="10"></textarea></p>

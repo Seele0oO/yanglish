@@ -4,25 +4,29 @@ import random
 from flask import Flask, render_template, request
 
 
-def yanglish(putstring):
+def yanglish(putstring,languageList):
     from pygtrans import Translate
     # import translators as ts
     client = Translate()
     import jieba
     import random
     outputString = ""
+    languageList=languageList.split(",")
+    print(languageList)
     seg_list = jieba.cut(putstring, cut_all=False)
     # print("Default Mode: " + "/ ".join(seg_list))  # 精确模式
     for w in seg_list:
         print(w)
-        rand = bool(random.getrandbits(1))
-        print("rand:", rand)
-        if rand:
-            text = client.translate(w,target='en',source='zh',fmt='text')
-            outputString = outputString+" "+str(text.translatedText)+" "
+        # rand = bool(random.getrandbits(1))
+        randlaugage=random.choice(languageList)
+        print("randlaugage:",randlaugage)
+        # print("rand:", rand)
+        # if rand:
+        text = client.translate(w,target=randlaugage,source='zh',fmt='text')
+        outputString = outputString+" "+str(text.translatedText)+" "
             # print(outputString)
-        else:
-            outputString = outputString+(w)
+        # else:
+            # outputString = outputString+(w)
             # print(outputString)
         # print(outputString)
     return outputString
@@ -56,11 +60,12 @@ def get_data():
 
     #可以通过 request 的 args 属性来获取参数
     getString = request.args.get("putstring")
-    print(getString)
+    languageList = request.args.get("languageList")
+    print(getString,languageList)
     # age = request.args.get("age")
     
     # 经过处理之后得到要传回的数据
-    res= hello_world(getString)
+    res= hello_world(getString,languageList)
     
     # 将数据再次打包为 JSON 并传回
     # res = '{{"obj": {} }}'.format(res.to_json(orient = "records", force_ascii = False))
@@ -68,9 +73,9 @@ def get_data():
     
     return res
 
-def hello_world(putstring):
+def hello_world(putstring,languageList):
     # putstring="我来到北京清华大学"
-    outputString=yanglish(putstring)
+    outputString=yanglish(putstring,languageList)
     # print(outputString)
     outputStringJson=json.dumps(outputString)
     return outputStringJson
