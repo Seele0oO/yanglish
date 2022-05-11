@@ -2,12 +2,12 @@
     "version": 2,
     "builds": [
         {
-            "src": "./templates/*.html",
+            "src": "./templates/*",
             "use": "@vercel/static"
         },
         {
             "src": "./*.py",
-            "use": "@vercel/python"
+            "use": "@now/python"
         }
     ],
     "routes": [
