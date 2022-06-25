@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>img</title>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<script>
+    function showImg() {
+        // const response = fetch("https://api.nyan.xyz/httpapi/sexphoto?num=1&r18=true")
+        // .then(response => response.json());
+        // var url = response.then(data => console.log(data["data"]["url"][0]));
+        // console.log(url);
+        document.write("https://api.nyan.xyz/httpapi/sexphoto?num=1&r18=true")
+        // document.write("<img src='" + url + "'>");
+
+        const Http = new XMLHttpRequest();
+        const url='https://api.nyan.xyz/httpapi/sexphoto?num=1&r18=true';
+        Http.open("GET", url);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+        console.log(Http.responseText)
+        }
+    }
+    function ajax() {
+        console.log("ajax");
+        // check_val=getCheckBoxs();
+        // msg = document.getElementById("postString").value;
+        // out = document.getElementById("out");
+        // out.value = null;
+        // JSON.stringify(msg);
+        // alert(msg);
+        $.ajax({
+            url: "./setu2",
+            type: "get",
+            success: function (returnValue) {
+                console.log(returnValue);
+                $(document.body).append('<img src="'+returnValue+'">');
+                // $("#out").val(JSON.parse(returnValue)['obj']);
+            }
+        })
+        
+    }
+</script>
+<body>
+    <button onclick="showImg()">show</button>
+    <button onclick="ajax()">ajax</button>
+    <br>
+    
+</body>
+</html>

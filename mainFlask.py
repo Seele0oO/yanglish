@@ -52,10 +52,11 @@ def multiprocessing_yanglish(putstring):
     return restr
 
 
+
+
 app = Flask(__name__)
 
 @app.route("/out")
-
 def get_data():
 
     #可以通过 request 的 args 属性来获取参数
@@ -87,6 +88,21 @@ def index():
         return render_template('index.html')
     
 
+@app.route("/setu")
+def setu():
+    # print(response)
+    return render_template('setu.html')
+@app.route("/setu2")
+def setu2():
+    import requests
+    response = requests.get("https://api.nyan.xyz/httpapi/sexphoto?num=1&r18=true")    
+    # response.encoding = 'utf-8'
+    response = response.json()
+    # print(response)
+    returnurl=response['data']['url'][0]
+    # response = response['data'][0]['url']
+
+    return returnurl
 
 if __name__ == "__main__":
     
