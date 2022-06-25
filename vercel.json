@@ -18,6 +18,14 @@
         {
             "src": "/out",
             "dest": "/mainFlask.py"
+        },
+        {
+            "src": "/setu2",
+            "dest": "/mainFlask.py"
+        },
+        {
+            "src": "/setu",
+            "dest": "/templates/setu.html"
         }
     ]
 }
