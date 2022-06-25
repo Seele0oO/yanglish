@@ -104,6 +104,16 @@ def setu2():
 
     return returnurl
 
+@app.route("/setu3")
+def setu3():
+    import requests
+    imagelink=setu2()
+    html = requests.get(imagelink)
+    with open('/templates/picture.jpg', 'wb') as file:
+        file.write(html.content)
+    return render_template('setu3.html')
+
+
 if __name__ == "__main__":
     
     app.run(host="0.0.0.0", port=5000)
