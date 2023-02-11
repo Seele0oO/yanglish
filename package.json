@@ -1,24 +1,10 @@
 {
   "name": "yanglish",
-  "version": "1.0.0",
-  "description": "一键放洋屁",
-  "main": "./templates/index.js",
-  "type": "commonjs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Seele0oO/yanglish.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Seele0oO/yanglish/issues"
-  },
-  "homepage": "https://github.com/Seele0oO/yanglish#readme",
-  "dependencies": {
-    "nodejieba": "^2.6.0"
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0"
   }
 }
